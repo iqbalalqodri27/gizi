@@ -30,7 +30,7 @@
               <div class="inner">
                 <h3>.</h3>
 
-                <p>Data Anak</p>
+                <p>Data Anak </p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
