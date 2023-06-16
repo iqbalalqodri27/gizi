@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Child;
+use App\Models\Mothers;
 class ChildController extends Controller
 {
     public function index()
     {
        $childs = Child::orderBy('created_at','DESC')->get();
-       return view('layouts.children.index',compact('childs'));
+       $mothers = Mothers::orderBy('created_at','DESC')->get();
+       return view('layouts.children.index',compact('childs','mothers'));
 
     }
 

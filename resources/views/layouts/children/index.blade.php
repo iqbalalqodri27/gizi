@@ -56,7 +56,13 @@
                                     <td class="align-middle">{{$child->tempat_lahir}}</td>
                                     <td class="align-middle">{{$child->tanggal_lahir}}</td>
                                     <td class="align-middle">{{$child->usia}}</td>
-                                    <td class="align-middle">{{$child->jenis_kelamin}}</td>
+                                    <td class="align-middle">
+                                        @if ($child->jenis_kelamin == 'L')
+                                            Laki - Laki
+                                        @else
+                                            Perempuan
+                                        @endif
+                                    </td>
                                     <td class="align-middle">{{$child->mothers->nama}}</td>
                                     {{-- <td class="align-middle">{{$child->mothers->nik}}</td>
                                     <td class="align-middle">{{$child->mothers->alamat}}</td>
@@ -142,10 +148,22 @@
 
                         <div class="form-group row">
                           <label for="inputEmail3" class="col-sm-4 col-form-label">Jenis Kelamin</label>
-                          <div class="col-sm-8">
-                              <input type="text" name="jenis_kelamin" class="form-control">
+                          <div class="icheck-success d-inline">
+                            <input type="radio" name="jenis_kelamin" checked id="radioSuccess1" value="L">
+                            
+                            <label for="radioSuccess1">
+                                Laki-Laki
+                            </label>
+                          </div>
+                          <div class="icheck-success d-inline">
+                            <input type="radio" name="jenis_kelamin" id="radioSuccess2" value="P">
+                            
+                            <label for="radioSuccess2">
+                                Perempuan 
+                            </label>
                           </div>
                       </div>
+
 
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">Usia</label>
@@ -155,11 +173,16 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-4 col-form-label">nama ibu</label>
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Ibu</label>
                             <div class="col-sm-8">
-                                <input type="text" name="mothers_id" class="form-control">
+                            <select name="mothers_id" class="form-control" id="mothers_id">
+                              <option value="0">Pilih Nama Ibu</option> 
+                              @foreach ($mothers as $data)
+                            <option value="{{$data->id  }}">{{$data->nama}}</option>                         
+                              @endforeach
+                            </select>                   
                             </div>
-                        </div>
+                          </div>
 
                     </div>
 
