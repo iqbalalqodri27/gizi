@@ -55,7 +55,7 @@
                                     <td class="align-middle">{{$child->nik}}</td>
                                     <td class="align-middle">{{$child->tempat_lahir}}</td>
                                     <td class="align-middle">{{$child->tanggal_lahir}}</td>
-                                    <td class="align-middle">{{$child->usia}}</td>
+                                    <td class="align-middle">{{$child->usia}} Bulan</td>
                                     <td class="align-middle">
                                         @if ($child->jenis_kelamin == 'L')
                                             Laki - Laki
@@ -175,7 +175,7 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Ibu</label>
                             <div class="col-sm-8">
-                            <select name="mothers_id" class="form-control" id="mothers_id">
+                            <select name="mothers_id" class="form-control select2" id="mothers_id"  style="width: 100%;">
                               <option value="0">Pilih Nama Ibu</option> 
                               @foreach ($mothers as $data)
                             <option value="{{$data->id  }}">{{$data->nama}}</option>                         

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>Tumbuh Kembang | Dashboard</title>
 
   @include('master_app.link');
  
@@ -264,8 +264,25 @@
 <script src="AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
+<!-- Select2 -->
+<script src="AdminLTE/plugins/select2/js/select2.full.min.js"></script>
+
 <!-- Page specific script -->
 <script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+
+  });
+
+</script>
+<script>
+
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,

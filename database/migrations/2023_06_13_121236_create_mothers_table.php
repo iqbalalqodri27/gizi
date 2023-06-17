@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("nama");
             $table->char('nik',16);
             $table->text("alamat");
-            $table->integer('no_tlp');
+            $table->char('no_tlp',14);
             $table->timestamps();
         });
     }

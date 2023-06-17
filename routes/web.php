@@ -1,7 +1,8 @@
 <?php
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\MotherController;
-use App\Http\Controllers\ChildController;
+use App\Http\Controllers\ChildController; 
+use App\Http\Controllers\PosyanduController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -44,13 +45,15 @@ Route::middleware('auth')->group(function () {
     Route::resource('dataibu', MotherController::class);
     
     Route::resource('dataanak', ChildController::class);
+
+    Route::resource('dataposyandu', PosyanduController::class);
     
     // Route::get('/dataanak', function () {
     //     return view('layouts.children.index');
     // })->name('dataanak');
     
-    Route::get('/dataposyandu', function () {
-        return view('layouts.posyandus.index');
-    })->name('dataposyandu');
+    // Route::get('/dataposyandu', function () {
+    //     return view('layouts.posyandus.index');
+    // })->name('dataposyandu');
 
 });

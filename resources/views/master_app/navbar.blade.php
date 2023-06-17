@@ -28,7 +28,7 @@
     </a>
   </li>
   <li class="nav-item">
-    <a href="{{route('dataposyandu')}}" class="nav-link {{Request::is('dataposyandu')? 'active':''  }}">
+    <a href="{{route('dataposyandu.index')}}" class="nav-link {{Request::is('dataposyandu')? 'active':''  }}">
       <i class="nav-icon far fa-circle text-info"></i>
       <p>DATA POSYANDU</p>
     </a>

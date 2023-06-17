@@ -26,5 +26,8 @@
 
   <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="AdminLTE/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
  
  
