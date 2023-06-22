@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(30)->create();
 
         \App\Models\User::factory()->create([
             'name' => 'Test User',
@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
             'child_id' => 1,
             'berat_badan' => 15.2,
             'tinggi_badan' => 98,
-            'lengkungan_kepala' => 50,
+            'lingkaran_kepala' => 50,
             'NT' => 'O',
             'AK' => 'K',
         ]);
@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder
             'child_id' => 2,
             'berat_badan' => 10.8,
             'tinggi_badan' => 76,
-            'lengkungan_kepala' => 47,
+            'lingkaran_kepala' => 47,
             'NT' => 'O',
             'AK' => 'K',
         ]);

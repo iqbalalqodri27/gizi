@@ -29,7 +29,7 @@ class ChildController extends Controller
     public function store(Request $request)
     {
         Child::create($request->all());
-        return redirect()->route('dataanak.index')->with('success','Tambah Data Ibu Berhasil');
+        return redirect()->route('dataanak.index')->with('success','Tambah Data Anak Berhasil');
     
     }
 
@@ -52,14 +52,14 @@ class ChildController extends Controller
     // /**
     //  * Update the specified resource in storage.
     //  */
-    // public function update(Request $request, string $id)
-    // {
-    //     // dd($id);
-    //     $mothers = Mothers::findOrFail($id);
-    //     $mothers->update($request->all());
+    public function update(Request $request, string $id)
+    {
+        // dd($id);
+        $children = Child::findOrFail($id);
+        $children->update($request->all());
 
-    //     return redirect()->route('dataibu.index')->with('successUpdate','Update Data Ibu Berhasil');
-    // }
+        return redirect()->route('dataanak.index')->with('successUpdate','Update Data Anak Berhasil');
+    }
 
     // /**
     //  * Remove the specified resource from storage.
@@ -68,7 +68,7 @@ class ChildController extends Controller
     {
         $childs = child::findOrFail($id);
         $childs->delete();
-        return redirect()->route('dataanak.index')->with('successDelete','Hapus Data Ibu Berhasil');
+        return redirect()->route('dataanak.index')->with('successDelete','Hapus Data Anak Berhasil');
     }
 
 }

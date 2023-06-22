@@ -3,6 +3,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\MotherController;
 use App\Http\Controllers\ChildController; 
 use App\Http\Controllers\PosyanduController;
+use App\Http\Controllers\ChartJSController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,7 @@ Route::get('registration', [AuthController::class, 'registration'])->name('regis
 Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('chart', [ChartJSController::class, 'index']);
 
 Route::middleware('auth')->group(function () {
     

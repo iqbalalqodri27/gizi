@@ -18,7 +18,7 @@ return new class extends Migration
             // $table->integer('Usia');
             $table->decimal('berat_badan', 10, 1)->default(0);
             $table->integer('tinggi_badan');
-            $table->integer('lengkungan_kepala');
+            $table->integer('lingkaran_kepala');
             $table->enum('NT', ['N', 'T','TP','O','TR','BR',]);
             $table->enum('AK', ['O', 'K','H','A']);
             $table->timestamps();

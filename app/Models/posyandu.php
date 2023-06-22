@@ -18,7 +18,7 @@ class Posyandu extends Model
         'child_id',
         'berat_badan',
         'tinggi_badan',
-        'lengkungan_kepala',
+        'lingkaran_kepala',
         'NT',
         'AK',
     ];

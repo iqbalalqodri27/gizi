@@ -25,6 +25,21 @@
             <div class="col-12">
 
                 <div class="card">
+                    @if (Session::has('success'))
+                    <div class="alert alert-success" role="alert">
+                       {{Session::get('success')}}
+                     </div>
+                    @endif
+                    @if (Session::has('successUpdate'))
+                    <div class="alert alert-warning" role="alert">
+                       {{Session::get('successUpdate')}}
+                     </div>
+                    @endif
+                    @if (Session::has('successDelete'))
+                    <div class="alert alert-secondary " role="alert">
+                       {{Session::get('successDelete')}}
+                     </div>
+                    @endif
                     <div class="card-header">
                         {{-- <h3 class="card-title">DataTable with default features</h3> --}}
                         <a class="btn btn-success" id="tampil-data" data-toggle="modal" data-target="#modal-lg">+ Tambah
@@ -56,17 +71,8 @@
                                     <td class="align-middle">{{$child->tempat_lahir}}</td>
                                     <td class="align-middle">{{$child->tanggal_lahir}}</td>
                                     <td class="align-middle">{{$child->usia}} Bulan</td>
-                                    <td class="align-middle">
-                                        @if ($child->jenis_kelamin == 'L')
-                                            Laki - Laki
-                                        @else
-                                            Perempuan
-                                        @endif
-                                    </td>
+                                    <td class="align-middle">{{$child->jenis_kelamin}}</td>
                                     <td class="align-middle">{{$child->mothers->nama}}</td>
-                                    {{-- <td class="align-middle">{{$child->mothers->nik}}</td>
-                                    <td class="align-middle">{{$child->mothers->alamat}}</td>
-                                    <td class="align-middle">{{$child->mothers->no_tlp}}</td> --}}
                                     <td>
                                         <a href="" class="btn btn-sm btn-info" data-toggle="modal"
                                             data-target="#modal{{$child->id}}">Edit</a> | |
@@ -79,6 +85,100 @@
 
                                     </td>
                                 </tr>
+
+
+                                <div class="modal fade" id="modal{{$child->id}}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Edit Data Anak</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <!-- di dalam modal-body terdapat 4 form input yang berisi data.
+                                              data-data tersebut ditampilkan sama seperti menampilkan data pada tabel. -->
+                                            <div class="modal-body">
+                                                <form class="" action="{{route('dataanak.update',$child->id)}}"
+                                                    method="POST">
+                                                    @method('PUT')
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <label for="exampleFormControlInput1">Nama Anak</label>
+                                                        <input type="hidden" name='id' class="form-control"
+                                                            value="<?php echo $child['id']; ?>">
+                                                        <input type="text" name='nama' class="form-control"
+                                                            value="<?php echo $child['nama']; ?>">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleFormControlTextarea1">NIK</label>
+                                                        <textarea class="form-control" name="nik"
+                                                            rows="5"><?php echo $child['nik']; ?></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleFormControlInput1">Tempat Lahir</label>
+                                                        <input type="text" name='tempat_lahir' class="form-control"
+                                                            value="<?php echo $child['tempat_lahir']; ?>">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleFormControlInput1">Alamat</label>
+                                                        <input type="date" name='tanggal_lahir' class="form-control"
+                                                            value="<?php echo $child['tanggal_lahir']; ?>">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleFormControlInput1">Usia</label>
+                                                        <input type="text" name='usia' class="form-control"
+                                                            value="<?php echo $child['usia']; ?>">
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Jenis
+                                                            Kelamin</label>
+                                                        <div class="d-inline">
+                                                            <input type="radio" name="jenis_kelamin" checked
+                                                                id="" value="L">
+
+                                                            <label for="radioSuccess1">
+                                                                Laki-Laki
+                                                            </label>
+                                                        </div>
+                                                        <div class="d-inline">
+                                                            <input type="radio" name="jenis_kelamin" id=""
+                                                                value="P">
+
+                                                            <label for="radioSuccess2">
+                                                                Perempuan
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Nama
+                                                            Ibu</label>
+                                                        <div class="col-sm-8">
+                                                            <select name="mothers_id" class="form-control select2"
+                                                                id="mothers_id" style="width: 100%;">
+                                                                <option value="0">Pilih Nama Ibu</option>
+                                                                @foreach ($mothers as $data)
+                                                                <option value="{{$data->id}}">{{$data->nama}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary">Save
+                                                            changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 @endforeach
                                 @else
                                 <tr>
@@ -147,25 +247,6 @@
                         </div>
 
                         <div class="form-group row">
-                          <label for="inputEmail3" class="col-sm-4 col-form-label">Jenis Kelamin</label>
-                          <div class="icheck-success d-inline">
-                            <input type="radio" name="jenis_kelamin" checked id="radioSuccess1" value="L">
-                            
-                            <label for="radioSuccess1">
-                                Laki-Laki
-                            </label>
-                          </div>
-                          <div class="icheck-success d-inline">
-                            <input type="radio" name="jenis_kelamin" id="radioSuccess2" value="P">
-                            
-                            <label for="radioSuccess2">
-                                Perempuan 
-                            </label>
-                          </div>
-                      </div>
-
-
-                        <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">Usia</label>
                             <div class="col-sm-8">
                                 <input type="text" name="usia" class="form-control">
@@ -173,16 +254,36 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">Jenis Kelamin</label>
+                            <div class="icheck-success d-inline">
+                                <input type="radio" name="jenis_kelamin" checked id="radioSuccess1" value="L">
+
+                                <label for="radioSuccess1">
+                                    Laki-Laki
+                                </label>
+                            </div>
+                            <div class="icheck-success d-inline">
+                                <input type="radio" name="jenis_kelamin" id="radioSuccess2" value="P">
+
+                                <label for="radioSuccess2">
+                                    Perempuan
+                                </label>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Ibu</label>
                             <div class="col-sm-8">
-                            <select name="mothers_id" class="form-control select2" id="mothers_id"  style="width: 100%;">
-                              <option value="0">Pilih Nama Ibu</option> 
-                              @foreach ($mothers as $data)
-                            <option value="{{$data->id  }}">{{$data->nama}}</option>                         
-                              @endforeach
-                            </select>                   
+                                <select name="mothers_id" class="form-control select2" id="mothers_id"
+                                    style="width: 100%;">
+                                    <option value="0">Pilih Nama Ibu</option>
+                                    @foreach ($mothers as $data)
+                                    <option value="{{$data->id  }}">{{$data->nama}}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                          </div>
+                        </div>
 
                     </div>
 

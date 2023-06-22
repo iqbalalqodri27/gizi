@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Posyandu;
+use App\Models\Child;
 class PosyanduController extends Controller
 {
     public function index()
     {
        $posyandus = Posyandu::orderBy('created_at','DESC')->get();
-       return view('layouts.posyandus.index',compact('posyandus'));
+       $children = Child::orderBy('created_at','DESC')->get();
+
+       return view('layouts.posyandus.index',compact('posyandus','children'));
 
     }
 
@@ -26,8 +29,8 @@ class PosyanduController extends Controller
      */
     public function store(Request $request)
     {
-        Mothers::create($request->all());
-        return redirect()->route('dataibu.index')->with('success','Tambah Data Ibu Berhasil');
+        Posyandu::create($request->all());
+        return redirect()->route('dataposyandu.index')->with('success','Tambah Data Posyandu Berhasil');
     
     }
 
@@ -56,7 +59,7 @@ class PosyanduController extends Controller
         $mothers = Mothers::findOrFail($id);
         $mothers->update($request->all());
 
-        return redirect()->route('dataibu.index')->with('successUpdate','Update Data Ibu Berhasil');
+        return redirect()->route('dataibu.index')->with('successUpdate','Update Data Posyandu Berhasil');
     }
 
     /**
@@ -64,8 +67,8 @@ class PosyanduController extends Controller
      */
     public function destroy(string $id)
     {
-        $mothers = Mothers::findOrFail($id);
-        $mothers->delete();
-        return redirect()->route('dataibu.index')->with('successDelete','Hapus Data Ibu Berhasil');
+        $Posyandu = Posyandu::findOrFail($id);
+        $Posyandu->delete();
+        return redirect()->route('dataposyandu.index')->with('successDelete','Hapus Data Posyandu Berhasil');
     }
 }
