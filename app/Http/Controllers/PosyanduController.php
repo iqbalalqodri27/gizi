@@ -56,10 +56,10 @@ class PosyanduController extends Controller
     public function update(Request $request, string $id)
     {
         // dd($id);
-        $mothers = Mothers::findOrFail($id);
-        $mothers->update($request->all());
+        $posyandu = Posyandu::findOrFail($id);
+        $posyandu->update($request->all());
 
-        return redirect()->route('dataibu.index')->with('successUpdate','Update Data Posyandu Berhasil');
+        return redirect()->route('dataposyandu.index')->with('successUpdate','Update Data Posyandu Berhasil');
     }
 
     /**

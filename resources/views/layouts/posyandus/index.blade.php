@@ -100,31 +100,63 @@
                                             <!-- di dalam modal-body terdapat 4 form input yang berisi data.
                                               data-data tersebut ditampilkan sama seperti menampilkan data pada tabel. -->
                                             <div class="modal-body">
-                                                    <form class="" action="{{route('dataibu.update',$posyandu->id)}}" method="POST">
+                                                    <form class="" action="{{route('dataposyandu.update',$posyandu->id)}}" method="POST">
                                                         @method('PUT')
                                                         @csrf
-                                                        <div class="form-group">
-                                                            <label for="exampleFormControlInput1">Nama Ibu</label>
-                                                            <input type="hidden" name='id' class="form-control"
-                                                                value="<?php echo $posyandu['id']; ?>">
-                                                            <input type="text" name='nama' class="form-control"
-                                                                value="<?php echo $posyandu['nama']; ?>">
+                                                        <div class="form-group row">
+                                                            <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Anak</label>
+                                                            <div class="col-sm-8">
+                                                            <select name="child_id" class="form-control select2" id="child_id"  style="width: 100%;">
+                                                            <option value="0">Pilih Nama Anak</option> 
+                                                            @foreach ($children as $child)
+                                                            <option value="{{$child->id}}">{{$child->nama}}</option>                         
+                                                            @endforeach
+                                                            </select>                   
+                                                            </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleFormControlTextarea1">NIK</label>
-                                                            <textarea class="form-control" name="nik"
-                                                                rows="5"><?php echo $posyandu['nik']; ?></textarea>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleFormControlInput1">Alamat</label>
-                                                            <input type="text" name='alamat' class="form-control"
-                                                                value="<?php echo $posyandu['alamat']; ?>">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleFormControlInput1">No Telpon</label>
-                                                            <input type="text" class="form-control" name='no_tlp'
-                                                                value="<?php echo $posyandu['no_tlp']; ?>">
-                                                        </div>
+                                                         <div class="form-group row">
+                                                                    <label for="inputEmail3" class="col-sm-4 col-form-label">Berat Badan</label>
+                                                                    <div class="col-sm-8">
+                                                                        <input type="number" name="berat_badan" class="form-control" value={{$posyandu->berat_badan}}>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row">
+                                                                    <label for="inputEmail3" class="col-sm-4 col-form-label">Tinggi Badan</label>
+                                                                    <div class="col-sm-8">
+                                                                        <input type="text" name="tinggi_badan" class="form-control" value={{$posyandu->tinggi_badan}}>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row">
+                                                                    <label for="inputEmail3" class="col-sm-4 col-form-label">Lingkaran Kepala</label>
+                                                                    <div class="col-sm-8">
+                                                                        <input type="number" name="lingkaran_kepala" class="form-control" value={{$posyandu->lingkaran_kepala}}>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row">
+                                                                    <label for="inputEmail3" class="col-sm-4 col-form-label">NT</label>
+                                                                    <div class="col-sm-8">
+                                                                    <select name="NT" class="form-control select2" id="mothers_id"  style="width: 100%;">
+                                                                    <option value="">Pilih NT</option> 
+                                                                    <option value="TP">TP</option>                         
+                                                                    <option value="O">O</option>                         
+                                                                    </select>                   
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row">
+                                                                    <label for="inputEmail3" class="col-sm-4 col-form-label">AK</label>
+                                                                    <div class="col-sm-8">
+                                                                    <select name="AK" class="form-control select2" id="AK"  style="width: 100%;">
+                                                                    <option value="">Pilih AK</option> 
+                                                                    <option value="O">O</option>                         
+                                                                    <option value="K">K</option>                         
+                                                                    <option value="H">H</option>                         
+                                                                    </select>                   
+                                                                    </div>
+                                                                </div>
                                                         <div class="modal-footer">
                                                             <button type="submit" class="btn btn-primary">Save changes</button>
                                                         </div>
