@@ -109,7 +109,7 @@
                                                             <select name="child_id" class="form-control select2" id="child_id"  style="width: 100%;">
                                                             <option value="0">Pilih Nama Anak</option> 
                                                             @foreach ($children as $child)
-                                                            <option value="{{$child->id}}">{{$child->nama}}</option>                         
+                                                            <option @selected($child->id == $posyandu->child_id) value="{{ $child->id }}">{{ $child->nama }}</option>                         
                                                             @endforeach
                                                             </select>                   
                                                             </div>

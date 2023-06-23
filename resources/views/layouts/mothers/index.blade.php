@@ -100,22 +100,22 @@
                                                             <input type="hidden" name='id' class="form-control"
                                                                 value="<?php echo $mother['id']; ?>">
                                                             <input type="text" name='nama' class="form-control"
-                                                                value="<?php echo $mother['nama']; ?>">
+                                                                value="<?php echo $mother['nama']; ?>" required>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="exampleFormControlTextarea1">NIK</label>
                                                             <textarea class="form-control" name="nik"
-                                                                rows="5"><?php echo $mother['nik']; ?></textarea>
+                                                                rows="5" required><?php echo $mother['nik']; ?></textarea>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="exampleFormControlInput1">Alamat</label>
                                                             <input type="text" name='alamat' class="form-control"
-                                                                value="<?php echo $mother['alamat']; ?>">
+                                                                value="<?php echo $mother['alamat']; ?>" required>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="exampleFormControlInput1">No Telpon</label>
                                                             <input type="text" class="form-control" name='no_tlp'
-                                                                value="<?php echo $mother['no_tlp']; ?>">
+                                                                value="<?php echo $mother['no_tlp']; ?>" required>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="submit" class="btn btn-primary">Save changes</button>
@@ -175,28 +175,28 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Ibu</label>
                             <div class="col-sm-8">
-                                <input type="text" name="nama" class="form-control">
+                                <input type="text" name="nama" class="form-control" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">NIK</label>
                             <div class="col-sm-8">
-                                <input type="number" name="nik" class="form-control">
+                                <input type="number" name="nik" class="form-control" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">Alamat</label>
                             <div class="col-sm-8">
-                                <input type="text" name="alamat" class="form-control">
+                                <input type="text" name="alamat" class="form-control" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">Nomor Telpon</label>
                             <div class="col-sm-8">
-                                <input type="number" name="no_tlp" class="form-control">
+                                <input type="number" name="no_tlp" class="form-control" required>
                             </div>
                         </div>
 

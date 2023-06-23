@@ -52,6 +52,7 @@
                                 <tr>
                                     <th>NO</th>
                                     <th>NAMA ANAK</th>
+                                    <th>NAMA IBU</th>
                                     <th>NIK ANAK</th>
                                     <th>TEMPAT LAHIR</th>
                                     <th>TANGGAL LAHIR</th>
@@ -67,6 +68,7 @@
                                 <tr>
                                     <th scope="row">{{$loop->iteration}}</th>
                                     <td class="align-middle">{{$child->nama}}</td>
+                                    <td class="align-middle">{{$child->mothers->nama}}</td>
                                     <td class="align-middle">{{$child->nik}}</td>
                                     <td class="align-middle">{{$child->tempat_lahir}}</td>
                                     <td class="align-middle">{{$child->tanggal_lahir}}</td>
@@ -110,42 +112,42 @@
                                                         <input type="hidden" name='id' class="form-control"
                                                             value="<?php echo $child['id']; ?>">
                                                         <input type="text" name='nama' class="form-control"
-                                                            value="<?php echo $child['nama']; ?>">
+                                                            value="<?php echo $child['nama']; ?>" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleFormControlTextarea1">NIK</label>
-                                                        <textarea class="form-control" name="nik"
+                                                        <textarea class="form-control" required name="nik"
                                                             rows="5"><?php echo $child['nik']; ?></textarea>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleFormControlInput1">Tempat Lahir</label>
                                                         <input type="text" name='tempat_lahir' class="form-control"
-                                                            value="<?php echo $child['tempat_lahir']; ?>">
+                                                            value="<?php echo $child['tempat_lahir']; ?>" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleFormControlInput1">Alamat</label>
                                                         <input type="date" name='tanggal_lahir' class="form-control"
-                                                            value="<?php echo $child['tanggal_lahir']; ?>">
+                                                            value="<?php echo $child['tanggal_lahir']; ?>" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleFormControlInput1">Usia</label>
-                                                        <input type="text" name='usia' class="form-control"
-                                                            value="<?php echo $child['usia']; ?>">
+                                                        <input type="number" name='usia' class="form-control"
+                                                            value="<?php echo $child['usia']; ?>" required>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="inputEmail3" class="col-sm-4 col-form-label">Jenis
                                                             Kelamin</label>
-                                                        <div class="d-inline">
-                                                            <input type="radio" name="jenis_kelamin" checked
+                                                        <div class=" d-inline">
+                                                            <input type="radio" name="jenis_kelamin" {{ $child->jenis_kelamin == 'L' ? 'checked' : '' }} 
                                                                 id="" value="L">
 
                                                             <label for="radioSuccess1">
                                                                 Laki-Laki
                                                             </label>
                                                         </div>
-                                                        <div class="d-inline">
+                                                        <div class=" d-inline">
                                                             <input type="radio" name="jenis_kelamin" id=""
-                                                                value="P">
+                                                                value="P" {{ $child->jenis_kelamin == 'P' ? 'checked' : '' }}>
 
                                                             <label for="radioSuccess2">
                                                                 Perempuan
@@ -158,10 +160,10 @@
                                                             Ibu</label>
                                                         <div class="col-sm-8">
                                                             <select name="mothers_id" class="form-control select2"
-                                                                id="mothers_id" style="width: 100%;">
+                                                                id="mothers_id" style="width: 100%;" required>
                                                                 <option value="0">Pilih Nama Ibu</option>
                                                                 @foreach ($mothers as $data)
-                                                                <option value="{{$data->id}}">{{$data->nama}}</option>
+                                                                <option @selected($data->id == $child->mothers_id) value="{{ $data->id }}">{{ $data->nama }}</option>                         
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -221,35 +223,35 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Anak</label>
                             <div class="col-sm-8">
-                                <input type="text" name="nama" class="form-control">
+                                <input type="text" name="nama" class="form-control" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">NIK Anak</label>
                             <div class="col-sm-8">
-                                <input type="number" name="nik" class="form-control">
+                                <input type="number" name="nik" class="form-control" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">Tempat Lahir</label>
                             <div class="col-sm-8">
-                                <input type="text" name="tempat_lahir" class="form-control">
+                                <input type="text" name="tempat_lahir" class="form-control" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">tanggal Lahir</label>
                             <div class="col-sm-8">
-                                <input type="date" name="tanggal_lahir" class="form-control">
+                                <input type="date" name="tanggal_lahir" class="form-control" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">Usia</label>
                             <div class="col-sm-8">
-                                <input type="text" name="usia" class="form-control">
+                                <input type="text" name="usia" class="form-control" required>
                             </div>
                         </div>
 
@@ -276,7 +278,7 @@
                             <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Ibu</label>
                             <div class="col-sm-8">
                                 <select name="mothers_id" class="form-control select2" id="mothers_id"
-                                    style="width: 100%;">
+                                    style="width: 100%;" required>
                                     <option value="0">Pilih Nama Ibu</option>
                                     @foreach ($mothers as $data)
                                     <option value="{{$data->id  }}">{{$data->nama}}</option>
