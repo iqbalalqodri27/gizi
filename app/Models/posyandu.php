@@ -19,8 +19,8 @@ class Posyandu extends Model
         'berat_badan',
         'tinggi_badan',
         'lingkaran_kepala',
-        'NT',
-        'AK',
+        'status',
+        'status_gizi',
     ];
 
     public function mothers()

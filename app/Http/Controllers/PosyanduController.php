@@ -11,9 +11,8 @@ class PosyanduController extends Controller
     {
        $posyandus = Posyandu::orderBy('created_at','DESC')->get();
        $children = Child::orderBy('created_at','DESC')->get();
-       $childrenn = Child::orderBy('created_at','DESC')->get();
 
-       return view('layouts.posyandus.index',compact('posyandus','children','childrenn'));
+       return view('layouts.posyandus.index',compact('posyandus','children'));
 
     }
 

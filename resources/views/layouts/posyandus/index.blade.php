@@ -27,18 +27,18 @@
                 <div class="card">
                     @if (Session::has('success'))
                     <div class="alert alert-success" role="alert">
-                       {{Session::get('success')}}
-                     </div>
+                        {{Session::get('success')}}
+                    </div>
                     @endif
                     @if (Session::has('successUpdate'))
                     <div class="alert alert-warning" role="alert">
-                       {{Session::get('successUpdate')}}
-                     </div>
+                        {{Session::get('successUpdate')}}
+                    </div>
                     @endif
                     @if (Session::has('successDelete'))
                     <div class="alert alert-secondary " role="alert">
-                       {{Session::get('successDelete')}}
-                     </div>
+                        {{Session::get('successDelete')}}
+                    </div>
                     @endif
                     <div class="card-header">
                         {{-- <h3 class="card-title">DataTable with default features</h3> --}}
@@ -57,8 +57,8 @@
                                     <th>Berat Badan</th>
                                     <th>Tinggi Badan</th>
                                     <th>Lengkungan Kepala</th>
-                                    <th>NT</th>
-                                    <th>AK</th>
+                                    <th>status</th>
+                                    <th>Status Gizi</th>
                                     <th>AKSI</th>
                                 </tr>
                             </thead>
@@ -73,11 +73,10 @@
                                     <td class="align-middle">{{$posyandu->berat_badan}}</td>
                                     <td class="align-middle">{{$posyandu->tinggi_badan}}</td>
                                     <td class="align-middle">{{$posyandu->lingkaran_kepala}}</td>
-                                    <td class="align-middle">{{$posyandu->NT}}</td>
-                                    <td class="align-middle">{{$posyandu->AK}}</td>
+                                    <td class="align-middle">{{$posyandu->status}}</td>
+                                    <td class="align-middle">{{$posyandu->status_gizi}}</td>
                                     <td>
-                                        <a href="" class="btn btn-sm btn-info" data-toggle="modal"
-                                            data-target="#modal{{$posyandu->id}}">Edit</a> | |
+                                        <a href="" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal{{$posyandu->id}}">Edit</a> | |
                                         <form class="d-inline" action="{{route('dataposyandu.destroy',$posyandu->id)}}" method="POST" onsubmit="return confirm('delete data ?')">
                                             @method('delete')
                                             @csrf
@@ -86,83 +85,84 @@
 
                                     </td>
                                 </tr>
-                                <div class="modal fade" id="modal{{$posyandu->id}}" tabindex="-1"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="modal{{$posyandu->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">Edit Data Posyandu</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <!-- di dalam modal-body terdapat 4 form input yang berisi data.
                                               data-data tersebut ditampilkan sama seperti menampilkan data pada tabel. -->
                                             <div class="modal-body">
-                                                    <form class="" action="{{route('dataposyandu.update',$posyandu->id)}}" method="POST">
-                                                        @method('PUT')
-                                                        @csrf
-                                                        <div class="form-group row">
-                                                            <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Anak</label>
-                                                            <div class="col-sm-8">
-                                                            <select name="child_id" class="form-control select2" id="child_id"  style="width: 100%;">
-                                                            <option value="0">Pilih Nama Anak</option> 
-                                                            @foreach ($children as $child)
-                                                            <option @selected($child->id == $posyandu->child_id) value="{{ $child->id }}">{{ $child->nama }}</option>                         
-                                                            @endforeach
-                                                            </select>                   
-                                                            </div>
+                                                <form class="" action="{{route('dataposyandu.update',$posyandu->id)}}" method="POST">
+                                                    @method('PUT')
+                                                    @csrf
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Anak</label>
+                                                        <div class="col-sm-8">
+                                                            <select name="child_id" class="form-control select2" id="child_id" style="width: 100%;">
+                                                                <option value="0">Pilih Nama Anak</option>
+                                                                @foreach ($children as $child)
+                                                                <option @selected($child->id == $posyandu->child_id) value="{{ $child->id }}" required>{{ $child->nama }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
-                                                         <div class="form-group row">
-                                                                    <label for="inputEmail3" class="col-sm-4 col-form-label">Berat Badan</label>
-                                                                    <div class="col-sm-8">
-                                                                        <input type="number" name="berat_badan" class="form-control" value={{$posyandu->berat_badan}}>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group row">
-                                                                    <label for="inputEmail3" class="col-sm-4 col-form-label">Tinggi Badan</label>
-                                                                    <div class="col-sm-8">
-                                                                        <input type="text" name="tinggi_badan" class="form-control" value={{$posyandu->tinggi_badan}}>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group row">
-                                                                    <label for="inputEmail3" class="col-sm-4 col-form-label">Lingkaran Kepala</label>
-                                                                    <div class="col-sm-8">
-                                                                        <input type="number" name="lingkaran_kepala" class="form-control" value={{$posyandu->lingkaran_kepala}}>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group row">
-                                                                    <label for="inputEmail3" class="col-sm-4 col-form-label">NT</label>
-                                                                    <div class="col-sm-8">
-                                                                    <select name="NT" class="form-control select2" id="mothers_id"  style="width: 100%;">
-                                                                    <option value="">Pilih NT</option> 
-                                                                    <option value="TP">TP</option>                         
-                                                                    <option value="O">O</option>                         
-                                                                    </select>                   
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group row">
-                                                                    <label for="inputEmail3" class="col-sm-4 col-form-label">AK</label>
-                                                                    <div class="col-sm-8">
-                                                                    <select name="AK" class="form-control select2" id="AK"  style="width: 100%;">
-                                                                    <option value="">Pilih AK</option> 
-                                                                    <option value="O">O</option>                         
-                                                                    <option value="K">K</option>                         
-                                                                    <option value="H">H</option>                         
-                                                                    </select>                   
-                                                                    </div>
-                                                                </div>
-                                                        <div class="modal-footer">
-                                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Berat Badan</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="number" name="berat_badan" class="form-control" value={{$posyandu->berat_badan}} required>
                                                         </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Tinggi Badan</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" name="tinggi_badan" class="form-control" value={{$posyandu->tinggi_badan}} required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Lingkaran Kepala</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="number" name="lingkaran_kepala" class="form-control" value={{$posyandu->lingkaran_kepala}}required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Status</label>
+                                                        <div class="col-sm-8">
+                                                            <select name="status" class="form-control select2" id="" style="width: 100%;" required>
+                                                                <option value="">Pilih Status</option>
+                                                                <option value="N">N</option>
+                                                                <option value="B">B</option>
+                                                                <option value="T">T</option>
+                                                                <option value="TP">TP</option>
+                                                                <option value="O">O</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Status Gizi</label>
+                                                        <div class="col-sm-8">
+                                                            <select name="status_gizi" class="form-control select2" style="width: 100%;" required>
+                                                                <option value="">Pilih Status Gizi</option>
+                                                                <option value="O">O</option>
+                                                                <option value="K">K</option>
+                                                                <option value="H">H</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                                    </div>
                                                 </form>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -219,14 +219,14 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Anak</label>
                             <div class="col-sm-8">
-                            <select name="child_id" class="form-control select2" id="child_id"  style="width: 100%;">
-                              <option value="0">Pilih Nama Anak</option> 
-                              @foreach ($children as $child)
-                            <option value="{{$child->id}}">{{$child->nama}}</option>                         
-                              @endforeach
-                            </select>                   
+                                <select name="child_id" class="form-control select2" id="child_id" style="width: 100%;">
+                                    <option value="0">Pilih Nama Anak</option>
+                                    @foreach ($children as $child)
+                                    <option value="{{$child->id}}">{{$child->nama}}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                          </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">Berat Badan</label>
@@ -250,27 +250,31 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-4 col-form-label">NT</label>
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">Status</label>
                             <div class="col-sm-8">
-                            <select name="NT" class="form-control select2" id="mothers_id"  style="width: 100%;">
-                              <option value="">Pilih NT</option> 
-                            <option value="TP">TP</option>                         
-                            <option value="O">O</option>                         
-                            </select>                   
+                                <select name="status" class="form-control select2" id="" style="width: 100%;" required>
+                                    <option value="">Pilih Status</option>
+                                    <option value="N">N</option>
+                                    <option value="B">B</option>
+                                    <option value="T">T</option>
+                                    <option value="TP">TP</option>
+                                    <option value="O">O</option>
+                                </select>
                             </div>
-                          </div>
+                        </div>
 
-                          <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-4 col-form-label">AK</label>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">Status Gizi</label>
                             <div class="col-sm-8">
-                            <select name="AK" class="form-control select2" id="AK"  style="width: 100%;">
-                              <option value="">Pilih AK</option> 
-                            <option value="O">O</option>                         
-                            <option value="K">K</option>                         
-                            <option value="H">H</option>                         
-                            </select>                   
+                                <select name="status_gizi" class="form-control select2" style="width: 100%;" required>
+                                    <option value="">Pilih Status Gizi</option>
+                                    <option value="O">O</option>
+                                    <option value="K">K</option>
+                                    <option value="H">H</option>
+                                </select>
                             </div>
-                          </div>
+                        </div>
+
 
                     </div>
 
@@ -290,10 +294,8 @@
 
 
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
 </script>
 @endsection

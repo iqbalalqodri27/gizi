@@ -23,11 +23,11 @@ class ChartJSController extends Controller
 
         public function index()
         {
-          $posyandu = Posyandu::select(DB::raw("COUNT(*) as count"), DB::raw("child_id as nama"))
+          $posyandu = Posyandu::select(DB::raw("COUNT(*) as count"), DB::raw("status as statuss"))
           // ->whereYear('NT')
-          ->groupBy(DB::raw("nama"))
+          ->groupBy(DB::raw("statuss"))
           ->orderBy('id','ASC')
-          ->pluck('count', 'nama');
+          ->pluck('count', 'statuss');
 
 $labels = $posyandu->keys();
 $data = $posyandu->values();
