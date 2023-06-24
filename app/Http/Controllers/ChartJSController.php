@@ -23,16 +23,17 @@ class ChartJSController extends Controller
 
         public function index()
         {
-          $posyandu = Posyandu::select(DB::raw("COUNT(*) as count"), DB::raw("status as statuss"))
+          $posyandu = Posyandu::select(DB::raw("COUNT(*) as count"), DB::raw("status_gizi as statuss"))
           // ->whereYear('NT')
           ->groupBy(DB::raw("statuss"))
           ->orderBy('id','ASC')
           ->pluck('count', 'statuss');
 
-$labels = $posyandu->keys();
-$data = $posyandu->values();
-    
-return view('chart', compact('labels', 'data'));
+        $labels = $posyandu->keys();
+        $data = $posyandu->values();
+
+          
+        return view('chart', compact('data', 'labels'));
         
 }
 

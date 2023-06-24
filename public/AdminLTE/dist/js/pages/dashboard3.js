@@ -16,17 +16,12 @@ $(function () {
   var salesChart = new Chart($salesChart, {
     type: 'bar',
     data: {
-      labels: ['JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+      labels: _ydata,
       datasets: [
         {
           backgroundColor: '#007bff',
           borderColor: '#007bff',
-          data: [1000, 2000, 3000, 2500, 2700, 2500, 3000]
-        },
-        {
-          backgroundColor: '#ced4da',
-          borderColor: '#ced4da',
-          data: [700, 1700, 2700, 2000, 1800, 1500, 2000]
+          data: _xdata
         }
       ]
     },
@@ -51,20 +46,8 @@ $(function () {
             lineWidth: '4px',
             color: 'rgba(0, 0, 0, .2)',
             zeroLineColor: 'transparent'
-          },
-          ticks: $.extend({
-            beginAtZero: true,
-
-            // Include a dollar sign in the ticks
-            callback: function (value) {
-              if (value >= 1000) {
-                value /= 1000
-                value += 'k'
-              }
-
-              return '$' + value
-            }
-          }, ticksStyle)
+          }
+          
         }],
         xAxes: [{
           display: true,

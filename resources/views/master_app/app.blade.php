@@ -263,7 +263,10 @@
 <script src="AdminLTE/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="AdminLTE/dist/js/pages/dashboard3.js"></script>
+<!-- OPTIONAL SCRIPTS -->
+<script src="AdminLTE/plugins/chart.js/Chart.min.js"></script>
 <!-- Select2 -->
 <script src="AdminLTE/plugins/select2/js/select2.full.min.js"></script>
 
@@ -299,6 +302,8 @@
     });
   });
 </script>
+
+
 
 </body>
 </html>

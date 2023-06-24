@@ -1,53 +1,83 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@200;300;400;500&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Kodchasan:ital,wght@0,300;1,200;1,300&family=Montserrat:ital,wght@0,200;0,300;0,800;1,200;1,300;1,400;1,500;1,600;1,700&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Parisienne&family=Playball&family=Poppins:ital,wght@0,100;0,200;0,300;0,800;0,900;1,100;1,200;1,300&family=Roboto+Condensed:wght@300;400;700&family=Roboto+Mono:ital,wght@0,100;1,100&family=Roboto:ital,wght@0,100;0,300;1,100&family=Rubik+Beastly&family=Teko:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <title>How to Use Charts.JS in Laravel 9? - Mywebtuts.com</title>
-</head>
-<style type="text/css">
-    body{
-        font-family: 'Roboto Mono', monospace;
-    }
-    h1{
-        text-align: center;
-        font-size:35px;
-        font-weight:900;
-    }
-</style>
-    
-<body>
-    <h1>How to Use Charts.JS in Laravel 9 - LaravelTuts.com</h1>
-    <canvas id="myChart" height="100px"></canvas>
-</body>
-  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  
-<script type="text/javascript">
-  
-    var labels =  {{ Js::from($labels) }};
-    var posyandu =  {{ Js::from($data) }};
-  
-    const data = {
-        labels: labels,
-        datasets: [{
-            label: 'My First dataset',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: posyandu,
-        }]
-    };
-  
-    const config = {
-        type: 'line',
-        data: data,
-        options: {}
-    };
-  
-    const myChart = new Chart(
-        document.getElementById('myChart'),
-        config
-    );
-  
+
+            <!-- /.card -->
+ @extends('master_app.app')
+@section('content')
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                {{-- <h1>Data Anak</h1>/ --}}
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">DataTables</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        {{-- {{dd($monthsCount)}} --}}
+        {{-- {{dd($months)}} --}}
+
+       <div class="card">
+              <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">Data Posyandu</h3>
+                  <a href="javascript:void(0);">View Report</a>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="d-flex">
+                  {{-- <p class="d-flex flex-column">
+                    <span class="text-bold text-lg">$18,230.00</span>
+                    <span>Sales Over Time </span>
+                  </p>
+                  <p class="ml-auto d-flex flex-column text-right">
+                    <span class="text-success">
+                      <i class="fas fa-arrow-up"></i> 33.1%
+                    </span>
+                    <span class="text-muted">Since last month</span>
+                  </p> --}}
+                </div>
+                <!-- /.d-flex -->
+
+                <div class="position-relative mb-4">
+                  <canvas id="sales-chart" height="200"></canvas>
+                </div>
+
+                <div class="d-flex flex-row justify-content-end">
+                  <span class="mr-2">
+                    <i class="fas fa-square text-primary"></i> Status Gizi
+                  </span>
+
+                  {{-- <span>
+                    <i class="fas fa-square text-gray"></i> Last year
+                  </span> --}}
+
+                  
+                </div>
+              </div>
+            </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+<script type='text/javascript'>
+  var _ydata = {!! json_encode($labels) !!}
+  var _xdata = {!! json_encode($data) !!}
+
 </script>
-</html>
+
+
+
+
+@endsection
