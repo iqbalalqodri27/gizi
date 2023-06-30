@@ -23,11 +23,6 @@ class Posyandu extends Model
         'status_gizi',
     ];
 
-    public function mothers()
-    {
-    	return $this->belongsTo(Mothers::class);
-    }
-
     public function child()
     {
     	return $this->belongsTo(Child::class);

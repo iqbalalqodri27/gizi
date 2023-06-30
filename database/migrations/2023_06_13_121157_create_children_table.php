@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('children', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('mothers_id')->nullable();
             $table->string("nama");
             $table->char('nik',16);
             $table->string("tempat_lahir");
             $table->date('tanggal_lahir');
             $table->string('usia');
             $table->enum('jenis_kelamin', ['L', 'P']);
+            $table->string("nama_ot");
+            $table->char('nik_ot',16);
+            $table->text("alamat_ot");
+            $table->char('no_tlp_ot',14);
             $table->timestamps();
         });
         

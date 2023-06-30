@@ -67,7 +67,7 @@
                                 @foreach ($posyandus as $posyandu)
                                 <tr>
                                     <th scope="row">{{$loop->iteration}}</th>
-                                    <td class="align-middle">{{$posyandu->child->mothers->nama}}</td>
+                                    <td class="align-middle">{{$posyandu->child->nama_ot}}</td>
                                     <td class="align-middle">{{$posyandu->child->nama}}</td>
                                     <td class="align-middle">{{$posyandu->child->jenis_kelamin}}</td>
                                     <td class="align-middle">{{$posyandu->berat_badan}}</td>

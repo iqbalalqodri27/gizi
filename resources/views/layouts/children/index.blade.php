@@ -27,18 +27,18 @@
                 <div class="card">
                     @if (Session::has('success'))
                     <div class="alert alert-success" role="alert">
-                       {{Session::get('success')}}
-                     </div>
+                        {{Session::get('success')}}
+                    </div>
                     @endif
                     @if (Session::has('successUpdate'))
                     <div class="alert alert-warning" role="alert">
-                       {{Session::get('successUpdate')}}
-                     </div>
+                        {{Session::get('successUpdate')}}
+                    </div>
                     @endif
                     @if (Session::has('successDelete'))
                     <div class="alert alert-secondary " role="alert">
-                       {{Session::get('successDelete')}}
-                     </div>
+                        {{Session::get('successDelete')}}
+                    </div>
                     @endif
                     <div class="card-header">
                         {{-- <h3 class="card-title">DataTable with default features</h3> --}}
@@ -58,7 +58,6 @@
                                     <th>TANGGAL LAHIR</th>
                                     <th>USIA</th>
                                     <th>JENIS KELAMIN </th>
-                                    <th>NAMA IBU </th>
                                     <th>AKSI</th>
                                 </tr>
                             </thead>
@@ -68,18 +67,15 @@
                                 <tr>
                                     <th scope="row">{{$loop->iteration}}</th>
                                     <td class="align-middle">{{$child->nama}}</td>
-                                    <td class="align-middle">{{$child->mothers->nama}}</td>
+                                    <td class="align-middle">{{$child->nama_ot}}</td>
                                     <td class="align-middle">{{$child->nik}}</td>
                                     <td class="align-middle">{{$child->tempat_lahir}}</td>
                                     <td class="align-middle">{{$child->tanggal_lahir}}</td>
                                     <td class="align-middle">{{$child->usia}} Bulan</td>
                                     <td class="align-middle">{{$child->jenis_kelamin}}</td>
-                                    <td class="align-middle">{{$child->mothers->nama}}</td>
                                     <td>
-                                        <a href="" class="btn btn-sm btn-info" data-toggle="modal"
-                                            data-target="#modal{{$child->id}}">Edit</a> | |
-                                        <form class="d-inline" action="{{route('dataanak.destroy',$child->id)}}"
-                                            method="POST" onsubmit="return confirm('delete data ?')">
+                                        <a href="" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal{{$child->id}}">Edit</a> | |
+                                        <form class="d-inline" action="{{route('dataanak.destroy',$child->id)}}" method="POST" onsubmit="return confirm('delete data ?')">
                                             @method('delete')
                                             @csrf
                                             <button class="btn btn-danger">Hapus</button>
@@ -88,66 +84,55 @@
                                     </td>
                                 </tr>
 
-
-                                <div class="modal fade" id="modal{{$child->id}}" tabindex="-1"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                {{-- Modal Update Anak --}}
+                                <div class="modal fade" id="modal{{$child->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">Edit Data Anak</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <!-- di dalam modal-body terdapat 4 form input yang berisi data.
                                               data-data tersebut ditampilkan sama seperti menampilkan data pada tabel. -->
                                             <div class="modal-body">
-                                                <form class="" action="{{route('dataanak.update',$child->id)}}"
-                                                    method="POST">
+                                                <form class="" action="{{route('dataanak.update',$child->id)}}" method="POST">
                                                     @method('PUT')
                                                     @csrf
                                                     <div class="form-group">
                                                         <label for="exampleFormControlInput1">Nama Anak</label>
-                                                        <input type="hidden" name='id' class="form-control"
-                                                            value="<?php echo $child['id']; ?>">
-                                                        <input type="text" name='nama' class="form-control"
-                                                            value="<?php echo $child['nama']; ?>" required>
+                                                        <input type="hidden" name='id' class="form-control" value="<?php echo $child['id']; ?>">
+                                                        <input type="text" name='nama' class="form-control" value="<?php echo $child['nama']; ?>" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleFormControlTextarea1">NIK</label>
-                                                        <textarea class="form-control" required name="nik"
-                                                            rows="5"><?php echo $child['nik']; ?></textarea>
+                                                        <textarea class="form-control" required name="nik" rows="5"><?php echo $child['nik']; ?></textarea>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleFormControlInput1">Tempat Lahir</label>
-                                                        <input type="text" name='tempat_lahir' class="form-control"
-                                                            value="<?php echo $child['tempat_lahir']; ?>" required>
+                                                        <input type="text" name='tempat_lahir' class="form-control" value="<?php echo $child['tempat_lahir']; ?>" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleFormControlInput1">Alamat</label>
-                                                        <input type="date" name='tanggal_lahir' class="form-control"
-                                                            value="<?php echo $child['tanggal_lahir']; ?>" required>
+                                                        <input type="date" name='tanggal_lahir' class="form-control" value="<?php echo $child['tanggal_lahir']; ?>" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="exampleFormControlInput1">Usia</label>
-                                                        <input type="number" name='usia' class="form-control"
-                                                            value="<?php echo $child['usia']; ?>" required>
+                                                        <input type="number" name='usia' class="form-control" value="<?php echo $child['usia']; ?>" required>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="inputEmail3" class="col-sm-4 col-form-label">Jenis
                                                             Kelamin</label>
                                                         <div class=" d-inline">
-                                                            <input type="radio" name="jenis_kelamin" {{ $child->jenis_kelamin == 'L' ? 'checked' : '' }} 
-                                                                id="" value="L">
+                                                            <input type="radio" name="jenis_kelamin" {{ $child->jenis_kelamin == 'L' ? 'checked' : '' }} id="" value="L">
 
                                                             <label for="radioSuccess1">
                                                                 Laki-Laki
                                                             </label>
                                                         </div>
                                                         <div class=" d-inline">
-                                                            <input type="radio" name="jenis_kelamin" id=""
-                                                                value="P" {{ $child->jenis_kelamin == 'P' ? 'checked' : '' }}>
+                                                            <input type="radio" name="jenis_kelamin" id="" value="P" {{ $child->jenis_kelamin == 'P' ? 'checked' : '' }}>
 
                                                             <label for="radioSuccess2">
                                                                 Perempuan
@@ -156,16 +141,30 @@
                                                     </div>
 
                                                     <div class="form-group row">
-                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Nama
-                                                            Ibu</label>
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Ibu</label>
                                                         <div class="col-sm-8">
-                                                            <select name="mothers_id" class="form-control select2"
-                                                                id="mothers_id" style="width: 100%;" required>
-                                                                <option value="0">Pilih Nama Ibu</option>
-                                                                @foreach ($mothers as $data)
-                                                                <option @selected($data->id == $child->mothers_id) value="{{ $data->id }}">{{ $data->nama }}</option>                         
-                                                                @endforeach
-                                                            </select>
+                                                            <input type="text" name="nama_ot"  class="form-control" value='{{$child->nama_ot}}' required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">NIK Ibu</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="number" name="nik_ot"  class="form-control" value='{{$child->nik_ot}}' required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Alamat</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" name="alamat_ot" class="form-control" value='{{$child->alamat_ot}}' required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Nomor Telpon</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="number" name="no_tlp_ot" class="form-control" value='{{$child->no_tlp_ot}}' required>
                                                         </div>
                                                     </div>
 
@@ -273,19 +272,38 @@
                             </div>
                         </div>
 
-
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Ibu</label>
                             <div class="col-sm-8">
-                                <select name="mothers_id" class="form-control select2" id="mothers_id"
-                                    style="width: 100%;" required>
-                                    <option value="0">Pilih Nama Ibu</option>
-                                    @foreach ($mothers as $data)
-                                    <option value="{{$data->id  }}">{{$data->nama}}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" name="nama_ot" class="form-control" required>
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">NIK</label>
+                            <div class="col-sm-8">
+                                <input type="number" name="nik_ot" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">Alamat</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="alamat_ot" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">Nomor Telpon</label>
+                            <div class="col-sm-8">
+                                <input type="number" name="no_tlp_ot" class="form-control" required>
+                            </div>
+                        </div>
+
+
+
+
+
 
                     </div>
 
@@ -305,11 +323,9 @@
 
 
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
 </script>
 
 

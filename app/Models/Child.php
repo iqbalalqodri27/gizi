@@ -18,15 +18,14 @@ class Child extends Model
         'tanggal_lahir',
         'usia',
         'jenis_kelamin',
+        'nama_ot',
+        'nik_ot',
+        'alamat_ot',
+        'no_tlp_ot',
+
     ];
   
 
-    public function mothers()
-    {
-    	return $this->belongsTo(Mothers::class);
-    }
-
-    
 
     public function Posyandu()
     {

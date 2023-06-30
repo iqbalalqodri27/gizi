@@ -21,65 +21,58 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('children')->insert([
-            'mothers_id' => 1,
             'nama' => 'Yuyun Agustin',
             'nik' => 1234567890123456,
             'tempat_lahir' => 'Jl. Sukabumi No.31 RT.00 RW.00 Jakarta',
             'tanggal_lahir' => '2023-08-29',
             'usia' => '1',
             'jenis_kelamin' => 'L',
+            'nama_ot' => 'Ibu Yuyun',
+            'nik_ot' => '1234567890123456',
+            'alamat_ot' => 'Jl. Sukabumi No.31 RT.00 RW.00 Jakarta',
+            'no_tlp_ot' => '085367261129',
         ]);
 
         DB::table('children')->insert([
-            'mothers_id' => 2,
             'nama' => 'Wati Pratami',
             'nik' => 1234567890123456,
             'tempat_lahir' => 'Jl. Sukabumi No.33 RT.00 RW.00 Jakarta',
             'tanggal_lahir' => '2022-09-17',
             'usia' => '1',
             'jenis_kelamin' => 'P',
+            'nama_ot' => 'Ibu Wati',
+            'nik_ot' => '1234567890123456',
+            'alamat_ot' => 'Jl. Sukabumi No.31 RT.00 RW.00 Jakarta',
+            'no_tlp_ot' => '085367261129',
         ]);
 
         DB::table('children')->insert([
-            'mothers_id' => 3,
             'nama' => 'Krisna Pratama',
             'nik' => 1234567890123456,
             'tempat_lahir' => 'Jl. Sukabumi No.33 RT.00 RW.00 Jakarta',
             'tanggal_lahir' => '2022-09-17',
             'usia' => '1',
             'jenis_kelamin' => 'L',
+            'nama_ot' => 'Ibu Krisna',
+            'nik_ot' => '1234567890123456',
+            'alamat_ot' => 'Jl. Sukabumi No.31 RT.00 RW.00 Jakarta',
+            'no_tlp_ot' => '085367261129',
         ]);
 
         DB::table('children')->insert([
-            'mothers_id' => 3,
             'nama' => 'Jundri Pradua',
             'nik' => 1234567890123456,
             'tempat_lahir' => 'Jl. Sukabumi No.33 RT.00 RW.00 Jakarta',
             'tanggal_lahir' => '2022-12-17',
             'usia' => '1',
             'jenis_kelamin' => 'L',
+            'nama_ot' => 'Ibu Jundri',
+            'nik_ot' => '1234567890123456',
+            'alamat_ot' => 'Jl. Sukabumi No.31 RT.00 RW.00 Jakarta',
+            'no_tlp_ot' => '085367261129',
         ]);
 
-        DB::table('mothers')->insert([
-            'nama' => 'Anggita Sukma',
-            'nik' => 1234567890123444,
-            'alamat' => 'Jl. Sukabumi No.31 RT.00 RW.00 Jakarta',
-            'no_tlp' => '085367261128',
-        ]);
-
-        DB::table('mothers')->insert([
-            'nama' => 'Susi Ningsih',
-            'nik' => 1234567890123444,
-            'alamat' => 'Jl. Sukabumi No.33 RT.00 RW.00 Jakarta',
-            'no_tlp' => '085367261192',
-        ]);
-
-        DB::table('mothers')->insert([
-            'nama' => 'Sinta Pertiwi',
-            'nik' => 1234567890123333,
-            'alamat' => 'Jl. Sukabumi No.36 RT.00 RW.00 Jakarta',
-            'no_tlp' => '085367261199',
-        ]);
+       
 
 
         DB::table('posyandus')->insert([
