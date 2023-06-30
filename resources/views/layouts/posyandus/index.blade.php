@@ -114,7 +114,7 @@
                                                     <div class="form-group row">
                                                         <label for="inputEmail3" class="col-sm-4 col-form-label">Berat Badan</label>
                                                         <div class="col-sm-8">
-                                                            <input type="number" name="berat_badan" class="form-control" value={{$posyandu->berat_badan}} required>
+                                                            <input type="number" name="berat_badan" class="form-control" step="0.01" min="0" lang="en" value={{$posyandu->berat_badan}} required>
                                                         </div>
                                                     </div>
 
@@ -128,7 +128,7 @@
                                                     <div class="form-group row">
                                                         <label for="inputEmail3" class="col-sm-4 col-form-label">Lingkaran Kepala</label>
                                                         <div class="col-sm-8">
-                                                            <input type="number" name="lingkaran_kepala" class="form-control" value={{$posyandu->lingkaran_kepala}}required>
+                                                            <input type="number" name="lingkaran_kepala" class="form-control" value={{$posyandu->lingkaran_kepala}} required>
                                                         </div>
                                                     </div>
 
@@ -137,11 +137,11 @@
                                                         <div class="col-sm-8">
                                                             <select name="status" class="form-control select2" id="" style="width: 100%;" required>
                                                                 <option value="">Pilih Status</option>
-                                                                <option value="N">N</option>
-                                                                <option value="B">B</option>
-                                                                <option value="T">T</option>
-                                                                <option value="TP">TP</option>
-                                                                <option value="O">O</option>
+                                                                <option value="N" {{ $posyandu->status =='N' ? 'selected' : '' }}>Naik</option>
+                                                                <option value="B" {{ $posyandu->status =='B' ? 'selected' : '' }}>Baru</option>
+                                                                <option value="T" {{ $posyandu->status =='T' ? 'selected' : '' }}>Turun</option>
+                                                                <option value="TP"{{ $posyandu->status =='TP' ? 'selected' : '' }}>Tetap</option>
+                                                                <option value="O" {{ $posyandu->status =='O' ? 'selected' : '' }}>Bulan Lalu Tidak Hadir</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -151,9 +151,9 @@
                                                         <div class="col-sm-8">
                                                             <select name="status_gizi" class="form-control select2" style="width: 100%;" required>
                                                                 <option value="">Pilih Status Gizi</option>
-                                                                <option value="O">O</option>
-                                                                <option value="K">K</option>
-                                                                <option value="H">H</option>
+                                                                <option value="O" {{ $posyandu->status_gizi =='O' ? 'selected' : '' }}>Orange</option>
+                                                                <option value="K" {{ $posyandu->status_gizi =='K' ? 'selected' : '' }}>Kuning</option>
+                                                                <option value="H" {{ $posyandu->status_gizi =='H' ? 'selected' : '' }}>Hijau</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -231,7 +231,7 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">Berat Badan</label>
                             <div class="col-sm-8">
-                                <input type="number" name="berat_badan" class="form-control">
+                                <input type="number" name="berat_badan" class="form-control" step="0.01" min="0" lang="en">
                             </div>
                         </div>
 

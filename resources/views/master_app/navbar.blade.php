@@ -35,7 +35,7 @@
   </li>
 
   <li class="nav-item">
-    <a href="chart" class="nav-link {{Request::is('dataposyandu')? 'active':''  }}">
+    <a href="chart" class="nav-link {{Request::is('chart')? 'active':''  }}">
       <i class="nav-icon far fa-circle text-info"></i>
       <p>Grafik</p>
     </a>
