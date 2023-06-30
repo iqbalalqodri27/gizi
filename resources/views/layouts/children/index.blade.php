@@ -52,10 +52,7 @@
                                 <tr>
                                     <th>NO</th>
                                     <th>NAMA ANAK</th>
-                                    <th>NAMA IBU</th>
                                     <th>NIK ANAK</th>
-                                    <th>TEMPAT LAHIR</th>
-                                    <th>TANGGAL LAHIR</th>
                                     <th>USIA</th>
                                     <th>JENIS KELAMIN </th>
                                     <th>AKSI</th>
@@ -67,25 +64,23 @@
                                 <tr>
                                     <th scope="row">{{$loop->iteration}}</th>
                                     <td class="align-middle">{{$child->nama}}</td>
-                                    <td class="align-middle">{{$child->nama_ot}}</td>
                                     <td class="align-middle">{{$child->nik}}</td>
-                                    <td class="align-middle">{{$child->tempat_lahir}}</td>
-                                    <td class="align-middle">{{$child->tanggal_lahir}}</td>
                                     <td class="align-middle">{{$child->usia}} Bulan</td>
                                     <td class="align-middle">{{$child->jenis_kelamin}}</td>
                                     <td>
-                                        <a href="" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal{{$child->id}}">Edit</a> | |
+                                        <a href="" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modaledit{{$child->id}}">Edit</a> | |
+                                        <a href="" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modaldetail{{$child->id}}">Detail</a>| |
                                         <form class="d-inline" action="{{route('dataanak.destroy',$child->id)}}" method="POST" onsubmit="return confirm('delete data ?')">
                                             @method('delete')
                                             @csrf
-                                            <button class="btn btn-danger">Hapus</button>
+                                            <button class="btn btn-sm btn-danger">Hapus</button>
                                         </form>
 
                                     </td>
                                 </tr>
 
                                 {{-- Modal Update Anak --}}
-                                <div class="modal fade" id="modal{{$child->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="modaledit{{$child->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -167,6 +162,107 @@
                                                             <input type="number" name="no_tlp_ot" class="form-control" value='{{$child->no_tlp_ot}}' required>
                                                         </div>
                                                     </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary">Save
+                                                            changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- Modal Detail Data Anak --}}
+                                <div class="modal fade" id="modaldetail{{$child->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Detail Data Anak</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <!-- di dalam modal-body terdapat 4 form input yang berisi data.
+                                              data-data tersebut ditampilkan sama seperti menampilkan data pada tabel. -->
+                                            <div class="modal-body">
+                                                <form class="" action="">
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Anak :</label>
+                                                        <div class="col-sm-8">
+                                                         <p type='text'  class="form-control">{{$child->nama}}</P>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Nik :</label>
+                                                        <div class="col-sm-8">
+                                                         <p type='text' class="form-control">{{$child->nik}}</P>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Tempat Lahir :</label>
+                                                        <div class="col-sm-8">
+                                                         <p type='text' class="form-control">{{$child->tempat_lahir}}</P>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Tanggal Lahir :</label>
+                                                        <div class="col-sm-8">
+                                                         <p type='text' class="form-control">{{$child->tanggal_lahir}}</P>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Usia :</label>
+                                                        <div class="col-sm-8">
+                                                         <p type='text' class="form-control">{{$child->usia}} Bulan</P>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Jenis Kelamin :</label>
+                                                        <div class="col-sm-8">
+                                                         <p type='text' class="form-control">
+                                                         @if($child->jenis_kelamin == 'L')
+
+                                                         Laki-Laki
+                                                            
+                                                         @else
+                                                         Perempuan
+                                                         @endif
+                                                         </P>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Nama Ibu :</label>
+                                                        <div class="col-sm-8">
+                                                         <p type='text' class="form-control">{{$child->nama_ot}} </P>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Nik Ibu :</label>
+                                                        <div class="col-sm-8">
+                                                         <p type='text' class="form-control">{{$child->nik_ot}} </P>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Alamat Ibu :</label>
+                                                        <div class="col-sm-8">
+                                                         <p type='text' class="form-control">{{$child->alamat_ot}} </P>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Nomor Tlp Ibu :</label>
+                                                        <div class="col-sm-8">
+                                                         <p type='text' class="form-control">{{$child->no_tlp_ot}} </P>
+                                                        </div>
+                                                    </div>
+
+                                                    
+                                                    
+                                                    
+
 
                                                     <div class="modal-footer">
                                                         <button type="submit" class="btn btn-primary">Save

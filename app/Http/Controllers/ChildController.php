@@ -10,8 +10,7 @@ class ChildController extends Controller
     public function index()
     {
        $childs = Child::orderBy('created_at','DESC')->get();
-       $mothers = Mothers::orderBy('created_at','DESC')->get();
-       return view('layouts.children.index',compact('childs','mothers'));
+       return view('layouts.children.index',compact('childs'));
 
     }
 
