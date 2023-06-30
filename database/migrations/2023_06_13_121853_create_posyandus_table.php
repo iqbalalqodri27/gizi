@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('posyandus', function (Blueprint $table) {
             $table->id();
+            $table->date('tanggal_data')->default(2023-01-01);
             $table->bigInteger('child_id')->nullable();
-            // $table->enum('jenis_kelamin', ['L', 'P']);
-            // $table->integer('Usia');
             $table->decimal('berat_badan', 10, 1)->default(0);
             $table->integer('tinggi_badan');
             $table->integer('lingkaran_kepala');

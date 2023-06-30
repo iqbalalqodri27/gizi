@@ -51,12 +51,11 @@
                             <thead>
                                 <tr>
                                     <th>NO</th>
-                                    <th>Nama Ibu</th>
                                     <th>Nama Anak</th>
                                     <th>Jenis Kelamin</th>
                                     <th>Berat Badan</th>
                                     <th>Tinggi Badan</th>
-                                    <th>Lengkungan Kepala</th>
+                                    <th>Lingkaran Kepala</th>
                                     <th>status</th>
                                     <th>Status Gizi</th>
                                     <th>AKSI</th>
@@ -67,20 +66,39 @@
                                 @foreach ($posyandus as $posyandu)
                                 <tr>
                                     <th scope="row">{{$loop->iteration}}</th>
-                                    <td class="align-middle">{{$posyandu->child->nama_ot}}</td>
                                     <td class="align-middle">{{$posyandu->child->nama}}</td>
                                     <td class="align-middle">{{$posyandu->child->jenis_kelamin}}</td>
                                     <td class="align-middle">{{$posyandu->berat_badan}}</td>
                                     <td class="align-middle">{{$posyandu->tinggi_badan}}</td>
                                     <td class="align-middle">{{$posyandu->lingkaran_kepala}}</td>
-                                    <td class="align-middle">{{$posyandu->status}}</td>
-                                    <td class="align-middle">{{$posyandu->status_gizi}}</td>
+                                    <td class="align-middle">
+                                    @if($posyandu->status == 'N')
+                                        Naik
+                                    @elseif($posyandu->status == 'B')
+                                        Baru
+                                    @elseif($posyandu->status == 'T')
+                                        Turun
+                                    @elseif($posyandu->status == 'TP')
+                                        Tetap
+                                    @elseif($posyandu->status == 'O')
+                                        Bulan Lalu Tidak Hadir
+                                    @endif
+                                    </td>
+                                    <td class="align-middle">
+                                    @if($posyandu->status_gizi == 'O')
+                                        Orange
+                                    @elseif($posyandu->status_gizi == 'K')
+                                        Kuning
+                                    @elseif($posyandu->status_gizi == 'H')
+                                        Hijau
+                                    @endif
+                                    </td>
                                     <td>
                                         <a href="" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal{{$posyandu->id}}">Edit</a> | |
                                         <form class="d-inline" action="{{route('dataposyandu.destroy',$posyandu->id)}}" method="POST" onsubmit="return confirm('delete data ?')">
                                             @method('delete')
                                             @csrf
-                                            <button class="btn btn-danger">Hapus</button>
+                                            <button class="btn btn-sm btn-danger">Hapus</button>
                                         </form>
 
                                     </td>
@@ -176,12 +194,11 @@
                             <tfoot>
                                 <tr>
                                     <th>NO</th>
-                                    <th>Nama Ibu</th>
                                     <th>Nama Anak</th>
                                     <th>Jenis Kelamin</th>
                                     <th>Berat Badan</th>
                                     <th>Tinggi Badan</th>
-                                    <th>Lengkungan Kepala</th>
+                                    <th>Lingkaran Kepala</th>
                                     <th>NT</th>
                                     <th>AK</th>
                                     <th>Aksi</th>
