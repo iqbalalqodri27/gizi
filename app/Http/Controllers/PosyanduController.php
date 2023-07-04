@@ -29,8 +29,17 @@ class PosyanduController extends Controller
      */
     public function store(Request $request)
     {
-        Posyandu::create($request->all());
-        return redirect()->route('dataposyandu.index')->with('success','Tambah Data Posyandu Berhasil');
+
+        if (Posyandu::where('child_id', $request->child_id)->exists()) {
+            return redirect()->route('dataposyandu.index')->with('CekData','Data Anak Sudah Ada !!');
+
+         }
+         else{
+            Posyandu::create($request->all());
+            return redirect()->route('dataposyandu.index')->with('success','Tambah Data Posyandu Berhasil');
+         }
+
+        
     
     }
 

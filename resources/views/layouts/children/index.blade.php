@@ -1,4 +1,5 @@
 @extends('master_app.app')
+@section('title', ' Data Anak')
 @section('content')
 
 <!-- Content Header (Page header) -->
@@ -163,7 +164,8 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="modal-footer">
+                                                    <div class="modal-footer justify-content-between">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                         <button type="submit" class="btn btn-primary">Save
                                                             changes</button>
                                                     </div>
@@ -264,7 +266,8 @@
                                                     
 
 
-                                                    <div class="modal-footer">
+                                                    <div class="modal-footer justify-content-between">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                         <button type="submit" class="btn btn-primary">Save
                                                             changes</button>
                                                     </div>

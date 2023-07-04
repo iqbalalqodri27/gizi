@@ -1,4 +1,5 @@
 @extends('master_app.app')
+@section('title', ' Data Posyandu')
 @section('content')
 
 <!-- Content Header (Page header) -->
@@ -40,6 +41,11 @@
                         {{Session::get('successDelete')}}
                     </div>
                     @endif
+                    @if (Session::has('CekData'))
+                    <div class="alert alert-secondary " role="alert">
+                        {{Session::get('CekData')}}
+                    </div>
+                    @endif
                     <div class="card-header">
                         {{-- <h3 class="card-title">DataTable with default features</h3> --}}
                         <a class="btn btn-success" id="tampil-data" data-toggle="modal" data-target="#modal-lg">+ Tambah
@@ -72,26 +78,26 @@
                                     <td class="align-middle">{{$posyandu->tinggi_badan}}</td>
                                     <td class="align-middle">{{$posyandu->lingkaran_kepala}}</td>
                                     <td class="align-middle">
-                                    @if($posyandu->status == 'N')
+                                        @if($posyandu->status == 'N')
                                         Naik
-                                    @elseif($posyandu->status == 'B')
+                                        @elseif($posyandu->status == 'B')
                                         Baru
-                                    @elseif($posyandu->status == 'T')
+                                        @elseif($posyandu->status == 'T')
                                         Turun
-                                    @elseif($posyandu->status == 'TP')
+                                        @elseif($posyandu->status == 'TP')
                                         Tetap
-                                    @elseif($posyandu->status == 'O')
+                                        @elseif($posyandu->status == 'O')
                                         Bulan Lalu Tidak Hadir
-                                    @endif
+                                        @endif
                                     </td>
                                     <td class="align-middle">
-                                    @if($posyandu->status_gizi == 'O')
+                                        @if($posyandu->status_gizi == 'O')
                                         Orange
-                                    @elseif($posyandu->status_gizi == 'K')
+                                        @elseif($posyandu->status_gizi == 'K')
                                         Kuning
-                                    @elseif($posyandu->status_gizi == 'H')
+                                        @elseif($posyandu->status_gizi == 'H')
                                         Hijau
-                                    @endif
+                                        @endif
                                     </td>
                                     <td>
                                         <a href="" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal{{$posyandu->id}}">Edit</a> | |
@@ -139,7 +145,7 @@
                                                     <div class="form-group row">
                                                         <label for="inputEmail3" class="col-sm-4 col-form-label">Tinggi Badan</label>
                                                         <div class="col-sm-8">
-                                                            <input type="text" name="tinggi_badan" class="form-control" value={{$posyandu->tinggi_badan}} required>
+                                                            <input type="number" name="tinggi_badan" class="form-control" value={{$posyandu->tinggi_badan}} required>
                                                         </div>
                                                     </div>
 
@@ -158,7 +164,7 @@
                                                                 <option value="N" {{ $posyandu->status =='N' ? 'selected' : '' }}>Naik</option>
                                                                 <option value="B" {{ $posyandu->status =='B' ? 'selected' : '' }}>Baru</option>
                                                                 <option value="T" {{ $posyandu->status =='T' ? 'selected' : '' }}>Turun</option>
-                                                                <option value="TP"{{ $posyandu->status =='TP' ? 'selected' : '' }}>Tetap</option>
+                                                                <option value="TP" {{ $posyandu->status =='TP' ? 'selected' : '' }}>Tetap</option>
                                                                 <option value="O" {{ $posyandu->status =='O' ? 'selected' : '' }}>Bulan Lalu Tidak Hadir</option>
                                                             </select>
                                                         </div>
@@ -175,7 +181,8 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="modal-footer">
+                                                    <div class="modal-footer justify-content-between">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                         <button type="submit" class="btn btn-primary">Save changes</button>
                                                     </div>
                                                 </form>
@@ -223,7 +230,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 id="modal-tambah" class="modal-title">Tambah Data Ibu</h4>
+                <h4 id="modal-tambah" class="modal-title">Tambah Data Posyandu</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -255,7 +262,7 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">Tinggi Badan</label>
                             <div class="col-sm-8">
-                                <input type="text" name="tinggi_badan" class="form-control">
+                                <input type="number" name="tinggi_badan" class="form-control">
                             </div>
                         </div>
 
@@ -271,11 +278,11 @@
                             <div class="col-sm-8">
                                 <select name="status" class="form-control select2" id="" style="width: 100%;" required>
                                     <option value="">Pilih Status</option>
-                                    <option value="N">N</option>
-                                    <option value="B">B</option>
-                                    <option value="T">T</option>
-                                    <option value="TP">TP</option>
-                                    <option value="O">O</option>
+                                    <option value="N">Naik</option>
+                                    <option value="B">Baru</option>
+                                    <option value="T">Turun</option>
+                                    <option value="TP">Tetap</option>
+                                    <option value="O">Bulan Lalu Tidak Hadir</option>
                                 </select>
                             </div>
                         </div>
@@ -285,9 +292,9 @@
                             <div class="col-sm-8">
                                 <select name="status_gizi" class="form-control select2" style="width: 100%;" required>
                                     <option value="">Pilih Status Gizi</option>
-                                    <option value="O">O</option>
-                                    <option value="K">K</option>
-                                    <option value="H">H</option>
+                                    <option value="O">Orange</option>
+                                    <option value="K">Kuning</option>
+                                    <option value="H">Hijau</option>
                                 </select>
                             </div>
                         </div>

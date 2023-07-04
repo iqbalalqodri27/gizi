@@ -1,6 +1,8 @@
 
             <!-- /.card -->
  @extends('master_app.app')
+@section('title', ' Data Grafik')
+
 @section('content')
 
 <!-- Content Header (Page header) -->

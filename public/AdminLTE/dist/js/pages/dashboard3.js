@@ -16,11 +16,11 @@ $(function () {
   var salesChart = new Chart($salesChart, {
     type: 'bar',
     data: {
-      labels: _ydata,
+      labels: ['Stunting', 'Obisitas','Normal'],
       datasets: [
         {
-          backgroundColor: '#007bff',
-          borderColor: '#007bff',
+          backgroundColor: ['#FFFF00','#FF8040','#6CC417'],
+          borderColor: ['#FFFF00','#FF8040','#6CC417'],
           data: _xdata
         }
       ]
@@ -44,7 +44,7 @@ $(function () {
           gridLines: {
             display: true,
             lineWidth: '4px',
-            color: 'rgba(0, 0, 0, .2)',
+            color: 'rgba(0, 1, 1, .2)',
             zeroLineColor: 'transparent'
           }
           
