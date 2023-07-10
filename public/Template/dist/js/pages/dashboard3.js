@@ -16,11 +16,11 @@ $(function () {
   var salesChart = new Chart($salesChart, {
     type: 'bar',
     data: {
-      labels: ['Stunting', 'Obisitas','Normal'],
+      labels: ['Cukup', 'Baik','Sangat Bagus','Sangat Kurang'],
       datasets: [
         {
-          backgroundColor: ['#FFFF00','#FF8040','#6CC417'],
-          borderColor: ['#FFFF00','#FF8040','#6CC417'],
+          backgroundColor: ['#FFFF00','#FF8040','#6CC417','red'],
+          borderColor: ['#FFFF00','#FF8040','#6CC417', '#6CC417','red'],
           data: _xdata
         }
       ]

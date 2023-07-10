@@ -92,11 +92,13 @@
                                     </td>
                                     <td class="align-middle">
                                         @if($posyandu->status_gizi == 'O')
-                                        Orange
+                                        Baik
                                         @elseif($posyandu->status_gizi == 'K')
-                                        Kuning
+                                        Cukup
                                         @elseif($posyandu->status_gizi == 'H')
-                                        Hijau
+                                        Sangat Bagus
+                                        @elseif($posyandu->status_gizi == 'BKM')
+                                        Sangat Kurang / Gizi Buruk
                                         @endif
                                     </td>
                                     <td>
@@ -175,12 +177,21 @@
                                                         <div class="col-sm-8">
                                                             <select name="status_gizi" class="form-control select2" style="width: 100%;" required>
                                                                 <option value="">Pilih Status Gizi</option>
-                                                                <option value="O" {{ $posyandu->status_gizi =='O' ? 'selected' : '' }}>Orange</option>
-                                                                <option value="K" {{ $posyandu->status_gizi =='K' ? 'selected' : '' }}>Kuning</option>
-                                                                <option value="H" {{ $posyandu->status_gizi =='H' ? 'selected' : '' }}>Hijau</option>
+                                                                <option value="O" {{ $posyandu->status_gizi =='O' ? 'selected' : '' }}>Baik</option>
+                                                                <option value="K" {{ $posyandu->status_gizi =='K' ? 'selected' : '' }}>Cukup</option>
+                                                                <option value="H" {{ $posyandu->status_gizi =='H' ? 'selected' : '' }}>Sangat Bagus</option>
+                                                                <option value="BKM" {{ $posyandu->status_gizi =='BKM' ? 'selected' : '' }}>Sangat Kurang / Gizi Buruk</option>
                                                             </select>
                                                         </div>
                                                     </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail3" class="col-sm-4 col-form-label">Tanggal Input</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="date" name="created_at" class="form-control" value='{{$posyandu->created_at}}'>
+                                                        </div>
+                                                    </div>
+
                                                     <div class="modal-footer justify-content-between">
                                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                         <button type="submit" class="btn btn-primary">Save changes</button>
@@ -194,7 +205,7 @@
                                 @endforeach
                                 @else
                                 <tr>
-                                    <td class="text-center" colspan="6">Data Ibu 0</td>
+                                    <td class="text-center" colspan="9">Data Posyandu 0</td>
                                 </tr>
                                 @endif
                             </tbody>
@@ -206,8 +217,8 @@
                                     <th>Berat Badan</th>
                                     <th>Tinggi Badan</th>
                                     <th>Lingkaran Kepala</th>
-                                    <th>NT</th>
-                                    <th>AK</th>
+                                    <th>Status</th>
+                                    <th>status Gizi</th>
                                     <th>Aksi</th>
                                 </tr>
                             </tfoot>
@@ -292,10 +303,18 @@
                             <div class="col-sm-8">
                                 <select name="status_gizi" class="form-control select2" style="width: 100%;" required>
                                     <option value="">Pilih Status Gizi</option>
-                                    <option value="O">Orange</option>
-                                    <option value="K">Kuning</option>
-                                    <option value="H">Hijau</option>
+                                    <option value="O">Baik</option>
+                                    <option value="K">Cukup</option>
+                                    <option value="H">Sangat Bagus</option>
+                                    <option value="BKM">Sangat Kurang / Gizi Buruk</option>
                                 </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">Tanggal Input</label>
+                            <div class="col-sm-8">
+                                <input type="date" name="created_at" class="form-control">
                             </div>
                         </div>
 

@@ -36,7 +36,6 @@ Route::get('registration', [AuthController::class, 'registration'])->name('regis
 Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('chart', [ChartJSController::class, 'index']);
 
 Route::middleware('auth')->group(function () {
     
@@ -50,12 +49,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('dataposyandu', PosyanduController::class);
     
-    // Route::get('/dataanak', function () {
-    //     return view('layouts.children.index');
-    // })->name('dataanak');
-    
-    // Route::get('/dataposyandu', function () {
-    //     return view('layouts.posyandus.index');
-    // })->name('dataposyandu');
+    Route::get('chart', [ChartJSController::class, 'index']);
+    Route::post('chart', [ChartJSController::class, 'index']);
 
 });

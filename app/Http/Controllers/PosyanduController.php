@@ -9,7 +9,7 @@ class PosyanduController extends Controller
 {
     public function index()
     {
-       $posyandus = Posyandu::orderBy('created_at','DESC')->get();
+       $posyandus = Posyandu::with('Child')->get();
        $children = Child::orderBy('created_at','DESC')->get();
 
        return view('layouts.posyandus.index',compact('posyandus','children'));
@@ -29,17 +29,27 @@ class PosyanduController extends Controller
      */
     public function store(Request $request)
     {
+            // dd($request->created_at);
 
-        if (Posyandu::where('child_id', $request->child_id)->exists()) {
-            return redirect()->route('dataposyandu.index')->with('CekData','Data Anak Sudah Ada !!');
+            $timestamp = strtotime($request->created_at);
+
+            $month = date('m', $timestamp);
+
+            $posyandu = Posyandu::where('child_id', $request->child_id)
+            ->whereMonth('created_at', '=', $month)
+            ->whereYear('created_at', '=', $request->created_at)
+            ->exists();
+
+        if ($posyandu) 
+        {
+            
+            return redirect()->route('dataposyandu.index')->with('CekData','Data Anak Di bulan Tersebut Sudah Ada !!');
 
          }
          else{
             Posyandu::create($request->all());
             return redirect()->route('dataposyandu.index')->with('success','Tambah Data Posyandu Berhasil');
          }
-
-        
     
     }
 

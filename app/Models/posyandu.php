@@ -21,11 +21,12 @@ class Posyandu extends Model
         'lingkaran_kepala',
         'status',
         'status_gizi',
+        'created_at',
     ];
 
     public function child()
     {
-    	return $this->belongsTo(Child::class);
+    	return $this->belongsTo(Child::class,'child_id');
     }
    
 

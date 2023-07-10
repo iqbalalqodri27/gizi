@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('tinggi_badan');
             $table->integer('lingkaran_kepala');
             $table->enum('status', ['N', 'B', 'T', 'TP', 'O']);
-            $table->enum('status_gizi', ['O', 'K', 'H']);
+            $table->enum('status_gizi', ['O', 'K', 'H', 'BKM']);
             $table->timestamps();
 
         });
