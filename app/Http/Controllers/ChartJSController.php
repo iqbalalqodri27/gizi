@@ -31,7 +31,7 @@ class ChartJSController extends Controller
             ->orderBy('id','ASC')
             ->pluck('count', 'statuss');
 
-            dd($posyandu);
+            // dd($posyandu);
 
             $labels = $posyandu->keys();
             $data = $posyandu->values();
